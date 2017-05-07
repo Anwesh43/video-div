@@ -1,0 +1,15 @@
+<body>
+    <script src="../client/VideoDiv.js">
+    </script>
+    <script>
+        const successCb = (stream) =>{
+            const videoDiv = new VideoDiv(window.URL.createObjectURL(stream),"Hello World","This is a demo to use the library")
+            videoDiv.create()
+        }
+        const errorCb = (err) => {
+            alert(err)
+        }
+        navigator.webkitGetUserMedia({audio:false,video:true},successCb,errorCb)
+
+    </script>
+</body>
