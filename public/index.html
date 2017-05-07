@@ -2,13 +2,23 @@
     <script src="../client/VideoDiv.js">
     </script>
     <script>
+        var i = 0
+        const colors = ['#0097A7','#f44336','#0277BD','#FF5722']
         const successCb = (stream) =>{
             const videoDiv = new VideoDiv(window.URL.createObjectURL(stream),"Hello World","This is a demo to use the library")
             videoDiv.create()
+            window.onkeydown = (event) => {
+                if(event.keyCode == 13) {
+                    videoDiv.applyColorFilter(colors[i])
+                    i++
+                    i%=colors.length
+                }
+            }
         }
         const errorCb = (err) => {
             alert(err)
         }
+
         navigator.webkitGetUserMedia({audio:false,video:true},successCb,errorCb)
 
     </script>
